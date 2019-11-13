@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductMapper">
+ 	
+ 	
+	<resultMap id="productSelectMap" type="product">
+		<result property="fileName" 			column="image_file" 			jdbcType="VARCHAR"/>
+		<result property="manuDate"	column="manufacture_day" 		jdbcType="VARCHAR" />
+		<result property="price" 	column="price" 		jdbcType="NUMERIC" />
+		<result property="prodDetail" 				column="prod_detail" 					jdbcType="VARCHAR" />
+		<result property="prodName" 				column="prod_name" 					jdbcType="VARCHAR" />
+		<result property="prodNo" 			column="prod_no" 		jdbcType="NUMERIC" />
+		<result property="regDate" 				column="reg_date" 					jdbcType="DATE" />
+		<result property="proTranCode" 				column="tran_status_code" 					jdbcType="CHAR" />
+		
+	</resultMap>
+	
+	<!-- SQL : INSERT -->
+	<insert 	id="addProduct"		parameterType="product" >
+	 	INSERT
+		INTO product(image_file, manufacture_day, price, prod_detail, prod_name, prod_no, reg_date) 
+		VALUES	 (#{fileName:VARCHAR},
+		TO_CHAR(TO_DATE(#{manuDate:VARCHAR},'YY-MM-DD'),'YYYYMMDD'),
+		#{price:NUMERIC},
+		#{prodDetail:VARCHAR},
+		#{prodName:VARCHAR},
+		seq_product_prod_no.nextval,
+		sysdate)
+	 </insert>
+	 
+	 <!-- SQL : SELECT ONE -->
+	 <select 	id="getProduct"	parameterType="int"	resultMap="productSelectMap">
+		SELECT
+		image_file, manufacture_day, price, prod_detail, prod_name, prod_no, reg_date
+		FROM product
+		WHERE prod_no = #{value}
+	 </select>
+	 
+	 <!-- SQL : UPDATE -->
+	 <update	id="updateProduct"	parameterType="product" >
+	   	UPDATE product
+	   	<set>
+	   		prod_name 	= #{prodName} ,
+			prod_detail	= #{prodDetail},
+			manufacture_day 				= TO_CHAR(TO_DATE(#{manuDate},'YY-MM-DD'),'YYYYMMDD'),
+			price				=	#{price},
+			image_file = #{fileName}
+	   	</set>
+	   	WHERE prod_no = #{prodNo}
+	 </update>
+		 
+	<!-- SQL : SELECT LIST -->
+	<select  id="getProductList"  parameterType="search"	resultMap="productSelectMap">
+	  	SELECT
+	  	*
+	  	FROM (
+	  		SELECT
+	  		inner_table.*, ROWNUM AS row_seq
+	  		FROM (
+	  			SELECT
+	  			product.*, transaction.tran_status_code
+				FROM product, transaction
+				
+				
+					<where>
+						product.prod_no = transaction.prod_no(+)
+						and transaction.tran_status_code is null
+						<if test="searchCondition != null">
+							<if test="searchCondition == 0 and searchKeyword !='' ">
+								and product.prod_no like '%'||#{searchKeyword}||'%'
+							</if>
+							<if test="searchCondition == 1 and searchKeyword !='' ">
+								and product.prod_name like '%'||#{searchKeyword}||'%'
+							</if>
+							<if test="searchCondition == 2 and searchKeyword !='' ">
+								and product.price like '%'||#{searchKeyword}||'%'
+							</if>
+						</if>
+					</where>
+				
+				<if test="sorting != null and sorting != ''">
+					<if test="sorting == 0">
+						order by product.prod_no desc
+					</if>
+					<if test="sorting == 1">
+						order by product.price
+					</if>
+					<if test="sorting == 2">
+						order by product.price desc
+					</if>
+					<if test="sorting == 3">
+						order by product.prod_name
+					</if>
+				</if>
+				<if test="sorting == null || sorting == ''">
+					order by product.prod_no desc
+				</if>
+				
+				
+			) inner_table
+			WHERE ROWNUM &lt;= #{endRowNum}
+		)
+		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
+	 </select>
+	 	<!--  위 두번째 subQuery 의  
+	 			WHERE ROWNUM &lt;= #{endRowNum} ) 는
+	 			WHERE ROWNUM <= #{endRowNum} ) 의미이며..
+	 			< 는 keyword 로 &lt; 를	사용.
+	 			
+	 			<![CDATA[  ~~~  ]]> 를 이용하여 아래와 같이 사용  할 수 있다.
+	 			CDATA ==> Character Data 의 의미 Java 에서 \n 같은 특수문자 처리  
+
+				WHERE ROWNUM <![CDATA[ <=]]> #{endRowNum} )
+		-->
+	
+	<!-- SQL : SELECT ROW Count -->	 
+	 <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+	  	SELECT
+	  	COUNT(*)
+	  	FROM(
+	  		SELECT
+	  		product.prod_name, product.price, product.reg_date, transaction.tran_status_code
+			FROM product, transaction
+			
+			
+				<where>
+					product.prod_no = transaction.prod_no(+)
+					and transaction.tran_status_code is null
+					<if test="searchCondition != null">
+						<if test="searchCondition == 0 and searchKeyword !='' ">
+							and product.prod_no like '%'||#{searchKeyword}||'%'
+						</if>
+						<if test="searchCondition == 1 and searchKeyword !='' ">
+							and product.prod_name like '%'||#{searchKeyword}||'%'
+						</if>
+						<if test="searchCondition == 2 and searchKeyword !='' ">
+							and product.price like '%'||#{searchKeyword}||'%'
+						</if>
+					</if>
+				</where>
+			
+		) countTable						
+	 </select>
+	 
+</mapper>
