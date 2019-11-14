@@ -209,17 +209,15 @@ function fncGetList(currentPage, sorting){
 					</c:if>
 					
 					<c:if test="${param.menu.equals('search') }">
-						<c:if test="${empty product.proTranCode}">
+						<c:if test="${product.quantity > 0}">
 							<a href="/getProduct.do?prodNo=${product.prodNo }">${product.prodName }</a>
 						</c:if>
-						<c:if test="${!empty product.proTranCode}">
-							<span>${product.prodName }</span>
-						</c:if>
+						
 					</c:if>
                     
                 </div>
                 <div class="price">
-                    ${product.price }
+                    ${product.price }¿ø
                 </div>
                 <div class="prodDetail">
                     ${product.prodDetail }

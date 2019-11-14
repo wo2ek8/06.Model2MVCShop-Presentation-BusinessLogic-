@@ -16,7 +16,7 @@
 		<result property="prodNo" 			column="prod_no" 		jdbcType="NUMERIC" />
 		<result property="regDate" 				column="reg_date" 					jdbcType="DATE" />
 		<result property="proTranCode" 				column="tran_status_code" 					jdbcType="CHAR" />
-		
+		<result property="quantity" 				column="quantity" 					jdbcType="NUMERIC" />
 	</resultMap>
 	
 	<!-- SQL : INSERT -->
@@ -35,7 +35,7 @@
 	 <!-- SQL : SELECT ONE -->
 	 <select 	id="getProduct"	parameterType="int"	resultMap="productSelectMap">
 		SELECT
-		image_file, manufacture_day, price, prod_detail, prod_name, prod_no, reg_date
+		image_file, manufacture_day, price, prod_detail, prod_name, prod_no, reg_date, quantity
 		FROM product
 		WHERE prod_no = #{value}
 	 </select>
@@ -68,7 +68,7 @@
 				
 					<where>
 						product.prod_no = transaction.prod_no(+)
-						and transaction.tran_status_code is null
+						and product.quantity > 0
 						<if test="searchCondition != null">
 							<if test="searchCondition == 0 and searchKeyword !='' ">
 								and product.prod_no like '%'||#{searchKeyword}||'%'
@@ -129,7 +129,7 @@
 			
 				<where>
 					product.prod_no = transaction.prod_no(+)
-					and transaction.tran_status_code is null
+					and product.quantity > 0
 					<if test="searchCondition != null">
 						<if test="searchCondition == 0 and searchKeyword !='' ">
 							and product.prod_no like '%'||#{searchKeyword}||'%'

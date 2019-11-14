@@ -13,11 +13,20 @@ public class Product {
 	private int prodNo;
 	private Date regDate;
 	private String proTranCode;
+	private int quantity;
 	
 	public Product() {
 		
 	}
 	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	public String getProTranCode() {
 		return proTranCode;
 	}

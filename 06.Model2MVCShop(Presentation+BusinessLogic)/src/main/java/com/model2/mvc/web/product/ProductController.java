@@ -121,6 +121,7 @@ public class ProductController {
 		
 		System.out.println("/listProduct.do");
 		
+		
 		if(search.getCurrentPage() == 0) {
 			search.setCurrentPage(1);
 		}
