@@ -38,7 +38,7 @@
         }
         div.wrap {
             width: 1000px;
-            margin: 30px auto;
+            margin: 0 auto;
             overflow: hidden;
         }
         div.wrap > div > div {
@@ -118,9 +118,92 @@
         div.btn a + a {
             margin-left: 2%;
         }
+        
+        div.afterUpdate {
+            border-bottom: 1px solid #bcbcbc;
+            overflow: hidden;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+        div.top {
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 35px;
+        }
+        p.title {
+            font-size: 20px;
+            width: 50%;
+            float: left;
+        }
+        p.more {
+            float: right;
+            font-size: 11px;
+            line-height: 30px;
+        }
+        p.bestReviewer img {
+            width: 100%;
+        }
+        div.review {
+            margin-bottom: 30px;
+        }
+        div.review div.textArea {
+            width: 100%;
+            background-color: lavender;
+            text-align: center;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        div.review div.textArea a {
+            background-color: #d99f9d;
+            color: white;
+            height: 40px;
+            line-height: 40px;
+            width: 120px;
+            border: 1px solid #898989;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        div.review div.textArea textarea {
+            padding: 20px;
+            width: 100%;
+            vertical-align: bottom;
+            overflow: hidden;
+        }
+        table.user {
+            border: 1px solid #dbdbdb;
+            color: #898989;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        table.user tr,
+        table.user td {
+            
+            padding: 10px;
+        }
+        table.user tr:nth-child(1) td {
+            border-bottom: 1px solid #dbdbdb;
+        }
+        table.user span {
+            float: right;
+        }
     </style>
 
 <title>Insert title here</title>
+<script>
+var userReview = document.getElementById("userReview").value;
+
+userReview = userReview.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
+document.getElementById("userReview").value = userReview;
+
+function fncAddReview(){
+	document.detailForm.action='/addReview.do?userReview=' + userReview + '&prodNo=' + ${product.prodNo};
+	document.detailForm.submit();
+}
+
+
+</script>
 </head>
 
 <body>
@@ -185,9 +268,65 @@
                 <div class="btn">
                     <a href="/addCart.do?prodNo=${product.prodNo }&userId=${user.userId}">장바구니</a>
                     <a href="#">관심상품</a>
-                    <a href="/addPurchaseView.do?prodNo=${product.prodNo }">구매하기</a>
+                    <a href="/addPurchaseView.do?prodNo=${product.prodNo }&quantity=${product.quantity}">구매하기</a>
                 </div>
             </div>
+        </div>
+        
+        <div class="review">
+            <div class="top">
+                <p class="title">REVIEW</p>
+                <p class="more">more ></p>
+                
+            </div>
+            <p class="bestReviewer"><img src="/images/review_de.jpg" alt=""></p>
+            
+            <div class="textArea">
+                <textarea name="userReview" id="userReview" rows="10" placeholder="글을 입력해 주세요."></textarea>
+                
+                <a href="javascript:fncAddReview()">글쓰기</a>
+            </div>
+            
+            <table class="user">
+                <tr>
+                    <td>userId grade <span>sysdate</span></td>
+                </tr>
+                <tr>
+                    <td>review</td>
+                </tr>
+                <tr>
+                    <td>댓글 0 ｜ 등록순</td>
+                </tr>
+                
+                
+            </table>
+            <table class="user">
+                <tr>
+                    <td>userId grade <span>sysdate</span></td>
+                </tr>
+                <tr>
+                    <td>review</td>
+                </tr>
+                <tr>
+                    <td>댓글 0 ｜ 등록순</td>
+                </tr>
+                
+                
+            </table>
+            <table class="user">
+                <tr>
+                    <td>userId grade <span>sysdate</span></td>
+                </tr>
+                <tr>
+                    <td>review</td>
+                </tr>
+                <tr>
+                    <td>댓글 0 ｜ 등록순</td>
+                </tr>
+                
+                
+            </table>
+            
         </div>
     </div>
 

@@ -56,6 +56,7 @@ public class PurchaseController {
 		
 		System.out.println("/addPurchaseView.do");
 		
+		
 		Product product = productService.getProduct(prodNo);
 		
 		model.addAttribute("product", product);
@@ -97,6 +98,11 @@ public class PurchaseController {
 		user.setPurchaseAmount(totalPurchase);
 		
 		userService.updateUser(user);
+		
+		int quantity = product.getQuantity();
+		product.setQuantity(quantity - 1);
+		
+		productService.updateProduct(product);
 		
 		model.addAttribute("purchase", purchase);
 		

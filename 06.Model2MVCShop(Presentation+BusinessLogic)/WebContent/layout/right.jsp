@@ -27,13 +27,16 @@
             font-size: 16px;
             color: #898989;
         }
-
+        div.wrap {
+            margin: 0 auto;
+            overflow: hidden;
+            width: 1370px;
+        }
         div.image-slide {
             position: relative;
             width: 940px;
-            height: 600px;
+            height: 476px;
             float: left;
-            margin-left: 30px;
         }
 
         div.image-slide>div.box {
@@ -90,7 +93,7 @@
             display: block;
             width: 10px;
             height: 10px;
-            background: #8b8b8b;
+            background: #8C8C8C;
             border-radius: 20px;
             overflow: hidden;
             text-indent: -999px;
@@ -105,18 +108,20 @@
         }
         
         div.event {
-            overflow: hidden;
             width: 400px;
-            font-size: 11px;
-            margin: 0 auto;
-            color: black;
+            float: left;
+            margin-left: 30px;
         }
-        div.event div.article {
-            height: 300px;
-        }
-        div.event div.article img {
+        div.event img {
             width: 100%;
         }
+        div.article {
+            height: 300px;
+            font-size: 12px;
+            color: #393939;
+        }
+        
+        
     </style>
     <script src="/javascript/jquery-3.4.1.min.js"></script>
     <script>
@@ -191,14 +196,15 @@
     </script>
 </head>
 <body>
+<div class="wrap">
 <div class="image-slide">
         <div class="box">
             <ul class="slide">
-                <li><a href="#"><img src="/images/0d88970c2812e36c130a72e75b04e2f9.jpg" alt=""></a></li>
-                <li><a href="#"><img src="/images/4c4d0f48da5da3184dc2e5594d3b069d.jpg" alt=""></a></li>
-                <li><a href="#"><img src="/images/75c1145f5c24212007cb7c2be84a5b54.jpg" alt=""></a></li>
-                <li><a href="#"><img src="/images/b4bcda19c79b5084bb605d8159f12334.jpg" alt=""></a></li>
-                <li><a href="#"><img src="/images/e5ca09182385cd2e1c61463ef974744c.jpg" alt=""></a></li>
+                <li><a href="#"><img src="/images/slideImage/84f4fd0ba83c0331bc65f9cd825c5b31.jpg" alt=""></a></li>
+                <li><a href="#"><img src="/images/slideImage/3930834157187dfd4f516f65184f754a.jpg" alt=""></a></li>
+                <li><a href="#"><img src="/images/slideImage/d3e6c3cd5d50d1d08173d16a6e469ae9.jpg" alt=""></a></li>
+                <li><a href="#"><img src="/images/slideImage/dea24549e7715cb5c8006015a80fc327.jpg" alt=""></a></li>
+                <li><a href="#"><img src="/images/slideImage/f8fbd51ba6322822eed1a36dc19d4d4d.jpg" alt=""></a></li>
             </ul>
             <ul class="indicator"></ul>
         </div>
@@ -215,6 +221,7 @@
             <img src="/images/main_8sale01.jpg" alt="">
             <p>매일매일 신상 8% SALE</p>
         </div>
+    </div>
     </div>
 </body>
 </html>

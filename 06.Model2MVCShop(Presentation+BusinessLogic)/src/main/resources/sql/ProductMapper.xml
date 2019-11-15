@@ -22,14 +22,15 @@
 	<!-- SQL : INSERT -->
 	<insert 	id="addProduct"		parameterType="product" >
 	 	INSERT
-		INTO product(image_file, manufacture_day, price, prod_detail, prod_name, prod_no, reg_date) 
+		INTO product(image_file, manufacture_day, price, prod_detail, prod_name, prod_no, reg_date, quantity) 
 		VALUES	 (#{fileName:VARCHAR},
 		TO_CHAR(TO_DATE(#{manuDate:VARCHAR},'YY-MM-DD'),'YYYYMMDD'),
 		#{price:NUMERIC},
 		#{prodDetail:VARCHAR},
 		#{prodName:VARCHAR},
 		seq_product_prod_no.nextval,
-		sysdate)
+		sysdate,
+		#{quantity:NUMERIC})
 	 </insert>
 	 
 	 <!-- SQL : SELECT ONE -->
@@ -48,7 +49,8 @@
 			prod_detail	= #{prodDetail},
 			manufacture_day 				= TO_CHAR(TO_DATE(#{manuDate},'YY-MM-DD'),'YYYYMMDD'),
 			price				=	#{price},
-			image_file = #{fileName}
+			image_file = #{fileName},
+			quantity = #{quantity}
 	   	</set>
 	   	WHERE prod_no = #{prodNo}
 	 </update>

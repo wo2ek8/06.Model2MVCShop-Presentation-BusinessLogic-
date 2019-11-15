@@ -109,7 +109,7 @@ function fncAddProduct(){
 		<td class="ct_write01">
 			<%-- <input type="text" name="prodDetail" value="<%=productVO.getProdDetail() %>" class="ct_input_g" 
 						style="width: 100px; height: 19px" maxLength="10"	minLength="6"> --%>
-						<input type="text" name="prodDetail" value="${product.prodDetail }" class="ct_input_g" style="width: 100px; height: 19px" maxLength="10"	minLength="6">
+						<input type="text" name="prodDetail" value="${product.prodDetail }" class="ct_input_g" style="width: 100px; height: 19px">
 		</td>
 	</tr>
 	<tr>
@@ -152,6 +152,19 @@ function fncAddProduct(){
 			<%-- <input	type="file" name="fileName" class="ct_input_g" 
 						style="width: 200px; height: 19px" maxLength="13" value="<%=productVO.getFileName()%>"/> --%>
 						<input	type="file" name="fileName" class="ct_input_g" style="width: 200px; height: 19px" maxLength="13" value="${product.fileName }"/>
+		</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
+	</tr>
+	<tr>
+		<td width="104" class="ct_write">
+			¼ö·® <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+		</td>
+		<td bgcolor="D6D6D6" width="1"></td>
+		<td class="ct_write01">
+			<input type="text" name="quantity" 	class="ct_input_g" 
+						style="width: 100px; height: 19px" maxLength="10" value="${product.quantity }">&nbsp;
 		</td>
 	</tr>
 	<tr>

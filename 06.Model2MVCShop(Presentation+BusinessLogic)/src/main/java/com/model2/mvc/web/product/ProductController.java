@@ -23,6 +23,7 @@ import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.domain.User;
 import com.model2.mvc.service.product.ProductService;
+import com.model2.mvc.service.review.ReviewService;
 
 //==> 회원관리 Controller
 @Controller
@@ -32,6 +33,10 @@ public class ProductController {
 	@Autowired
 	@Qualifier("productServiceImpl")
 	private ProductService productService;
+	
+	@Autowired
+	@Qualifier("reviewServiceImpl")
+	private ReviewService reviewService;
 	//setter Method 구현 않음
 	
 	public ProductController() {
@@ -90,6 +95,8 @@ public class ProductController {
 		
 		cookie.setMaxAge(-1);
 		response.addCookie(cookie);
+		
+		
 		
 		return "forward:/product/afterUpdate.jsp";
 	}
