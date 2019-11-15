@@ -42,9 +42,8 @@ public class ReviewController {
 		Review review = new Review();
 		
 		User user = (User)session.getAttribute("user");
-		String userId = user.getUserId();
 		
-		review.setUserId(userId);
+		review.setReviewer(user);
 		review.setProdNo(prodNo);
 		review.setUserReview(userReview);
 		
@@ -56,12 +55,8 @@ public class ReviewController {
 		
 		
 		
-		return "redirect:/index.jsp";
+		return "redirect:/getProduct.do?prodNo=" + prodNo;
 	}
 	
-	@RequestMapping("/listReview.do")
-	public String listReview() throws Exception {
-		System.out.println("/listReview.do");
-		return "";
-	}
+	
 }

@@ -38,7 +38,7 @@
         }
         div.wrap {
             width: 1000px;
-            margin: 0 auto;
+            margin: 0 auto 30px;
             overflow: hidden;
         }
         div.wrap > div > div {
@@ -184,9 +184,14 @@
         table.user tr:nth-child(1) td {
             border-bottom: 1px solid #dbdbdb;
         }
-        table.user span {
+        table.user span.regDate {
             float: right;
         }
+        span.grade {
+			font-weight: bold;
+			color: rgb(217, 159, 157);
+			margin-left: 6px;
+		}
     </style>
 
 <title>Insert title here</title>
@@ -201,6 +206,8 @@ function fncAddReview(){
 	document.detailForm.action='/addReview.do?userReview=' + userReview + '&prodNo=' + ${product.prodNo};
 	document.detailForm.submit();
 }
+
+
 
 
 </script>
@@ -287,12 +294,13 @@ function fncAddReview(){
                 <a href="javascript:fncAddReview()">글쓰기</a>
             </div>
             
+            <c:forEach var="review" items="${list }">
             <table class="user">
                 <tr>
-                    <td>userId grade <span>sysdate</span></td>
+                    <td>${review.reviewer.userId } <span class="grade">${review.reviewer.grade }</span> <span class="regDate">${review.regDate }</span></td>
                 </tr>
                 <tr>
-                    <td>review</td>
+                    <td>${review.userReview }</td>
                 </tr>
                 <tr>
                     <td>댓글 0 ｜ 등록순</td>
@@ -300,36 +308,12 @@ function fncAddReview(){
                 
                 
             </table>
-            <table class="user">
-                <tr>
-                    <td>userId grade <span>sysdate</span></td>
-                </tr>
-                <tr>
-                    <td>review</td>
-                </tr>
-                <tr>
-                    <td>댓글 0 ｜ 등록순</td>
-                </tr>
-                
-                
-            </table>
-            <table class="user">
-                <tr>
-                    <td>userId grade <span>sysdate</span></td>
-                </tr>
-                <tr>
-                    <td>review</td>
-                </tr>
-                <tr>
-                    <td>댓글 0 ｜ 등록순</td>
-                </tr>
-                
-                
-            </table>
+            </c:forEach>
+            
             
         </div>
     </div>
-
+	
 
 </form>
 

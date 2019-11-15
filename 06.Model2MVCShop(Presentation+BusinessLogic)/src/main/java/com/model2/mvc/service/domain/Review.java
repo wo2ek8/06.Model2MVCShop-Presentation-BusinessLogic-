@@ -7,19 +7,55 @@ public class Review {
 	private Date regDate;
 	private String userReview;
 	private int prodNo;
-	private String userId;
+	private User reviewer;
 	
 	public Review() {
 		
 	}
 
-	public String getUserId() {
-		return userId;
+	
+	
+
+
+	
+
+
+
+
+
+	
+
+	public User getReviewer() {
+		return reviewer;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setReviewer(User reviewer) {
+		this.reviewer = reviewer;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 	public int getProdNo() {
 		return prodNo;
@@ -47,7 +83,7 @@ public class Review {
 	}
 	
 	public String toString() {
-		return "userId : " + userId + ", prodNo : " + prodNo + ", userReview : " + userReview + ", regDate : " + regDate;
+		return "reviewer : " + reviewer + ", prodNo : " + prodNo + ", userReview : " + userReview + ", regDate : " + regDate;
 		
 	}
 	

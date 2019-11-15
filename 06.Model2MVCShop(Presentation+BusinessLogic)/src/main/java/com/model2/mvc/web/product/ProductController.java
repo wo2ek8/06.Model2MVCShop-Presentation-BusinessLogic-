@@ -64,7 +64,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/getProduct.do")
-	public String getProduct(@RequestParam("prodNo") String prodNo, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String getProduct(@RequestParam("prodNo") String prodNo, Model model, HttpServletRequest request, HttpServletResponse response, @ModelAttribute("search") Search search) throws Exception {
 		
 		System.out.println("/getProduct.do");
 		//Business Logic
@@ -96,7 +96,19 @@ public class ProductController {
 		cookie.setMaxAge(-1);
 		response.addCookie(cookie);
 		
+		if(search.getCurrentPage() == 0) {
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);
 		
+		Map<String, Object> map = reviewService.getReviewList(search, Integer.parseInt(prodNo));
+		
+		Page resultPage = new Page(search.getCurrentPage(), ((Integer)map.get("prodReview")).intValue(), pageUnit, pageSize);
+		System.out.println("resultPage : " + resultPage);
+		
+		model.addAttribute("list", map.get("list"));
+		model.addAttribute("resultPage", resultPage);
+		model.addAttribute("search", search);
 		
 		return "forward:/product/afterUpdate.jsp";
 	}
