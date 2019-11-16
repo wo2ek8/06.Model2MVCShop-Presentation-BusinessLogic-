@@ -29,7 +29,7 @@ function fncUpdateUser() {
 	document.detailForm.submit();
 }
 
-function check_email(frm) {
+/* function check_email(frm) {
 	alert
 	var email=document.detailForm.email.value;
     if(email != "" && (email.indexOf('@') < 1 || email.indexOf('.') == -1)){
@@ -37,7 +37,7 @@ function check_email(frm) {
 		return false;
     }
     return true;
-}
+} */
 
 function resetData() {
 	document.detailForm.reset();

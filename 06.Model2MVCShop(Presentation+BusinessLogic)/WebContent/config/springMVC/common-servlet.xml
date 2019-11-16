@@ -22,13 +22,13 @@
 
       
 	 <!-- ::  Annotation 지원 HandlerMapping 선언 -->
-	 <!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	  <!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 	 	<property name="order" value="0"/>
 		<property name="interceptors" ref="logonCheckInterceptor"/>
-	 </bean> -->
+	 </bean>  -->
 	 
 	 <!--  :: Interceptor 선언 : 로그인 유무확인.--> 
-	<!-- <bean id="logonCheckInterceptor"	class="com.model2.mvc.common.web.LogonCheckInterceptor" /> -->
+	 <!-- <bean id="logonCheckInterceptor"	class="com.model2.mvc.common.web.LogonCheckInterceptor" />  -->
 
 
 	<!--  :: ViewResolver 선언 -->	

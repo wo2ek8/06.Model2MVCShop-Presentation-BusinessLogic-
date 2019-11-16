@@ -222,6 +222,7 @@
             <p>매일매일 신상 8% SALE</p>
         </div>
     </div>
+    
     </div>
 </body>
 </html>

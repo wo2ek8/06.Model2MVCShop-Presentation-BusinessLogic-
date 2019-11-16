@@ -121,7 +121,7 @@ function history(){
 				</td>
 			</tr>
 			<%}
-			if(vo != null && role.equals("user")) {%>
+			if(vo != null) {%>
 			<tr>
 				<td class="DepthEnd">&nbsp;</td>
 			</tr>
