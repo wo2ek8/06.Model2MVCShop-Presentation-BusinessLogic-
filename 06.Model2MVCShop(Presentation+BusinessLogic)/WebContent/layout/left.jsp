@@ -34,6 +34,7 @@ function history(){
 <td valign="top"> 
 	<table  border="0" cellspacing="0" cellpadding="0" width="159" >	
 		<% 	if(vo != null){ %>
+		
 		<tr>
 			<td class="Depth03">
 				<a href="/getUser.do?userId=<%=vo.getUserId() %>" target="rightFrame">개인정보조회</a>
@@ -41,6 +42,9 @@ function history(){
 		</tr>
 		<%	}  %>
 		<% if(role.equals("admin")){%>
+		<tr>
+				<td class="DepthEnd">&nbsp;</td>
+			</tr>
 		<tr>
 			<td class="Depth03" >
 				<a href="/listUser.do" target="rightFrame">회원정보조회</a>
@@ -63,6 +67,9 @@ function history(){
 				<td class="Depth03">
 					<a href="../product/addProductView.jsp;" target="rightFrame">판매상품등록</a>
 				</td>
+			</tr>
+			<tr>
+				<td class="DepthEnd">&nbsp;</td>
 			</tr>
 			<tr>
 				<td class="Depth03">
@@ -88,6 +95,9 @@ function history(){
 			</tr>
 			<%	if(vo != null && role.equals("user")){%>
 			<tr>
+				<td class="DepthEnd">&nbsp;</td>
+			</tr>
+			<tr>
 				<td class="Depth03">
 					<a href="/listPurchase.do"  target="rightFrame">구매이력조회</a>
 				</td>
@@ -102,6 +112,9 @@ function history(){
 				</td>
 			</tr>
 			<%if(vo != null && role.equals("admin")) {%>
+			<tr>
+				<td class="DepthEnd">&nbsp;</td>
+			</tr>
 				<tr>
 				<td class="Depth03">
 					<a href="/listSale.do"  target="rightFrame">판매이력조회</a>
@@ -109,6 +122,9 @@ function history(){
 			</tr>
 			<%}
 			if(vo != null && role.equals("user")) {%>
+			<tr>
+				<td class="DepthEnd">&nbsp;</td>
+			</tr>
 				<tr>
 				<td class="Depth03">
 					<a href="/listCart.do"  target="rightFrame">장바구니</a>
